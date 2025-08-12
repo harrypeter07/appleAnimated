@@ -13,12 +13,8 @@
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^9.119.0",
     "@react-three/fiber": "^8.17.10",
-    "@sentry/node": "^8.42.0",
-    "@sentry/react": "^8.42.0",
-    "@sentry/vite-plugin": "^2.22.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sentry": "^0.1.2",
     "three": "^0.171.0"
   },
   "devDependencies": {
