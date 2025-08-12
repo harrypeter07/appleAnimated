@@ -37,47 +37,79 @@ export const preloadAssets = () => {
 
     let loadedCount = 0;
     const totalAssets = assets.length;
+    const maxRetries = 2;
 
-    const loadAsset = (src) => {
+    const loadAsset = (src, retryCount = 0) => {
       return new Promise((resolveAsset) => {
+        const timeout = setTimeout(() => {
+          if (retryCount < maxRetries) {
+            loadAsset(src, retryCount + 1).then(resolveAsset);
+          } else {
+            loadedCount++;
+            resolveAsset(); // Continue even if some assets fail
+          }
+        }, 3000); // 3 second timeout
+
         if (src.endsWith('.mp4')) {
-          // Preload video
+          // Preload video metadata only
           const video = document.createElement('video');
           video.preload = 'metadata';
           video.onloadedmetadata = () => {
+            clearTimeout(timeout);
             loadedCount++;
             resolveAsset();
           };
           video.onerror = () => {
-            loadedCount++;
-            resolveAsset(); // Continue even if some assets fail
+            clearTimeout(timeout);
+            if (retryCount < maxRetries) {
+              loadAsset(src, retryCount + 1).then(resolveAsset);
+            } else {
+              loadedCount++;
+              resolveAsset();
+            }
           };
           video.src = src;
         } else if (src.endsWith('.glb')) {
-          // For 3D models, we'll just mark as loaded since they're loaded by Three.js
+          // For 3D models, just mark as loaded
+          clearTimeout(timeout);
           loadedCount++;
           resolveAsset();
         } else {
           // Preload images
           const img = new Image();
           img.onload = () => {
+            clearTimeout(timeout);
             loadedCount++;
             resolveAsset();
           };
           img.onerror = () => {
-            loadedCount++;
-            resolveAsset(); // Continue even if some assets fail
+            clearTimeout(timeout);
+            if (retryCount < maxRetries) {
+              loadAsset(src, retryCount + 1).then(resolveAsset);
+            } else {
+              loadedCount++;
+              resolveAsset();
+            }
           };
           img.src = src;
         }
       });
     };
 
-    // Load all assets in parallel
-    Promise.all(assets.map(loadAsset)).then(() => {
-      // Add a small delay to ensure smooth transition
-      setTimeout(resolve, 500);
-    });
+    // Load assets in batches to avoid overwhelming the browser
+    const batchSize = 5;
+    const loadBatch = async (startIndex) => {
+      const batch = assets.slice(startIndex, startIndex + batchSize);
+      if (batch.length === 0) {
+        resolve();
+        return;
+      }
+      
+      await Promise.allSettled(batch.map(loadAsset));
+      setTimeout(() => loadBatch(startIndex + batchSize), 100);
+    };
+
+    loadBatch(0);
   });
 };
 
@@ -87,5 +119,15 @@ export const lazyLoadComponent = (importFunc) => {
     setTimeout(() => {
       importFunc().then(resolve);
     }, 100);
+  });
+};
+
+// Check if assets are cached
+export const checkAssetCache = () => {
+  return new Promise((resolve) => {
+    const testImage = new Image();
+    testImage.onload = () => resolve(true);
+    testImage.onerror = () => resolve(false);
+    testImage.src = '/assets/images/apple.svg';
   });
 };

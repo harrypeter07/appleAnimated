@@ -15,10 +15,15 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Preload all assets in the background
-    preloadAssets().then(() => {
-      // Assets are loaded, but we'll let the AppLoader handle the timing
-    });
+    // Start preloading assets immediately in the background
+    preloadAssets()
+      .then(() => {
+        console.log('Assets preloaded successfully');
+      })
+      .catch((error) => {
+        console.error('Error preloading assets:', error);
+        // Continue anyway - the loader will handle the timing
+      });
   }, []);
 
   const handleLoadingComplete = () => {
@@ -31,9 +36,36 @@ const App = () => {
 
   return (
     <main className="bg-black">
-      <Suspense fallback={<div className="h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
-      </div>}>
+      <Suspense fallback={
+        <div className="h-screen bg-black flex items-center justify-center">
+          <div className="relative">
+            <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
+              <circle
+                cx="40"
+                cy="40"
+                r="30"
+                stroke="#333"
+                strokeWidth="4"
+                fill="none"
+              />
+              <circle
+                cx="40"
+                cy="40"
+                r="30"
+                stroke="white"
+                strokeWidth="4"
+                fill="none"
+                strokeLinecap="round"
+                className="animate-spin"
+                style={{
+                  strokeDasharray: 188.5,
+                  strokeDashoffset: 47.125
+                }}
+              />
+            </svg>
+          </div>
+        </div>
+      }>
         <Navbar />
         <Hero />
         <Highlights />
@@ -41,7 +73,7 @@ const App = () => {
         <Features />
         <HowItWorks />
         <Footer />
-      </React.Suspense>
+      </Suspense>
     </main>
   );
 };
