@@ -22,7 +22,6 @@ export default [
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      '@react-three' :react-three,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -34,6 +33,22 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      'react/no-unknown-property': ['error', { ignore: [
+        'castShadow',
+        'receiveShadow',
+        'geometry',
+        'material',
+        'position',
+        'angle',
+        'penumbra',
+        'decay',
+        'intensity',
+        'roughness',
+        'map',
+        'dispose'
+      ]}],
+      'react/prop-types': 'off',
+      'no-unused-vars': 'warn',
     },
   },
 ]
