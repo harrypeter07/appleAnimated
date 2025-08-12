@@ -37,18 +37,20 @@ export const preloadAssets = () => {
 
     let loadedCount = 0;
     const totalAssets = assets.length;
-    const maxRetries = 2;
+    const maxRetries = 3;
 
     const loadAsset = (src, retryCount = 0) => {
       return new Promise((resolveAsset) => {
         const timeout = setTimeout(() => {
           if (retryCount < maxRetries) {
+            console.log(`Retrying to load ${src} (attempt ${retryCount + 1})`);
             loadAsset(src, retryCount + 1).then(resolveAsset);
           } else {
+            console.warn(`Failed to load ${src} after ${maxRetries} attempts`);
             loadedCount++;
             resolveAsset(); // Continue even if some assets fail
           }
-        }, 3000); // 3 second timeout
+        }, 5000); // 5 second timeout
 
         if (src.endsWith('.mp4')) {
           // Preload video metadata only
@@ -57,6 +59,7 @@ export const preloadAssets = () => {
           video.onloadedmetadata = () => {
             clearTimeout(timeout);
             loadedCount++;
+            console.log(`Loaded video: ${src}`);
             resolveAsset();
           };
           video.onerror = () => {
@@ -73,6 +76,7 @@ export const preloadAssets = () => {
           // For 3D models, just mark as loaded
           clearTimeout(timeout);
           loadedCount++;
+          console.log(`Marked 3D model as loaded: ${src}`);
           resolveAsset();
         } else {
           // Preload images
@@ -80,6 +84,7 @@ export const preloadAssets = () => {
           img.onload = () => {
             clearTimeout(timeout);
             loadedCount++;
+            console.log(`Loaded image: ${src}`);
             resolveAsset();
           };
           img.onerror = () => {
@@ -96,20 +101,16 @@ export const preloadAssets = () => {
       });
     };
 
-    // Load assets in batches to avoid overwhelming the browser
-    const batchSize = 5;
-    const loadBatch = async (startIndex) => {
-      const batch = assets.slice(startIndex, startIndex + batchSize);
-      if (batch.length === 0) {
-        resolve();
-        return;
-      }
+    // Load all assets in parallel for faster loading
+    Promise.allSettled(assets.map(loadAsset)).then((results) => {
+      const successful = results.filter(result => result.status === 'fulfilled').length;
+      const failed = results.filter(result => result.status === 'rejected').length;
       
-      await Promise.allSettled(batch.map(loadAsset));
-      setTimeout(() => loadBatch(startIndex + batchSize), 100);
-    };
-
-    loadBatch(0);
+      console.log(`Asset loading complete: ${successful} successful, ${failed} failed`);
+      
+      // Add a small delay to ensure smooth transition
+      setTimeout(resolve, 200);
+    });
   });
 };
 

@@ -2,32 +2,42 @@ import React, { useState, useEffect, Suspense } from "react";
 import AppLoader from "./components/AppLoader";
 import { preloadAssets } from "./utils/assetLoader";
 
-// Lazy load components for better performance
-const Features = React.lazy(() => import("./components/Features"));
-const Footer = React.lazy(() => import("./components/Footer"));
-const Hero = React.lazy(() => import("./components/Hero"));
-const Highlights = React.lazy(() => import("./components/Highlights"));
-const HowItWorks = React.lazy(() => import("./components/HowItWorks"));
-const Model = React.lazy(() => import("./components/Model"));
-const Navbar = React.lazy(() => import("./components/Navbar"));
+// Import components directly instead of lazy loading to avoid the second loader
+import Features from "./components/Features";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import Highlights from "./components/Highlights";
+import HowItWorks from "./components/HowItWorks";
+import Model from "./components/Model";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
 
   useEffect(() => {
     // Start preloading assets immediately in the background
     preloadAssets()
       .then(() => {
         console.log('Assets preloaded successfully');
+        setAssetsLoaded(true);
       })
       .catch((error) => {
         console.error('Error preloading assets:', error);
-        // Continue anyway - the loader will handle the timing
+        setAssetsLoaded(true); // Continue anyway after 10 seconds
       });
   }, []);
 
   const handleLoadingComplete = () => {
-    setIsLoading(false);
+    // Only complete loading if assets are loaded or 10 seconds have passed
+    if (assetsLoaded) {
+      setIsLoading(false);
+    } else {
+      // If assets aren't loaded yet, wait a bit more
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
   };
 
   if (isLoading) {
@@ -36,44 +46,13 @@ const App = () => {
 
   return (
     <main className="bg-black">
-      <Suspense fallback={
-        <div className="h-screen bg-black flex items-center justify-center">
-          <div className="relative">
-            <svg className="w-20 h-20 transform -rotate-90" viewBox="0 0 80 80">
-              <circle
-                cx="40"
-                cy="40"
-                r="30"
-                stroke="#333"
-                strokeWidth="4"
-                fill="none"
-              />
-              <circle
-                cx="40"
-                cy="40"
-                r="30"
-                stroke="white"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                className="animate-spin"
-                style={{
-                  strokeDasharray: 188.5,
-                  strokeDashoffset: 47.125
-                }}
-              />
-            </svg>
-          </div>
-        </div>
-      }>
-        <Navbar />
-        <Hero />
-        <Highlights />
-        <Model />
-        <Features />
-        <HowItWorks />
-        <Footer />
-      </Suspense>
+      <Navbar />
+      <Hero />
+      <Highlights />
+      <Model />
+      <Features />
+      <HowItWorks />
+      <Footer />
     </main>
   );
 };
