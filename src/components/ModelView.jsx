@@ -1,4 +1,4 @@
-import { Html,  OrbitControls, PerspectiveCamera, View } from "@react-three/drei"
+import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei"
 import Lights from "./Lights"
 import { Suspense } from "react"
 import IPhone from "./iPhone"

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { chipImg, frameImg, frameVideo } from '../utils'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
@@ -55,7 +55,7 @@ const HowItWorks = () => {
           </h2>
 
           <p className="hiw-subtitle">
-            It's here. The biggest redesign in the history of Apple GPUs.
+            It&apos;s here. The biggest redesign in the history of Apple GPUs.
           </p>
         </div>
 
@@ -90,8 +90,8 @@ const HowItWorks = () => {
                    Mobile {' '}
                     <span className="text-white">
                       games will look and feel so immersive
-                    </span>,
-                     with incredibly detailed environments and characters.
+                    </span>
+                    , with incredibly detailed environments and characters.
                   </p>
                 </div>
               

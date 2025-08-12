@@ -91,8 +91,8 @@ const Features = () => {
                     iPhone 15 Pro is {' '}
                     <span className="text-white">
                       the first iPhone to feature an aerospace-grade titanium design
-                    </span>,
-                    using the same alloy that spacecrafts use for missions to Mars.
+                    </span>
+                    , using the same alloy that spacecrafts use for missions to Mars.
                   </p>
                 </div>
 
@@ -102,7 +102,7 @@ const Features = () => {
                     <span className="text-white">
                       lightest Pro models ever.
                     </span>
-                    You'll notice the difference the moment you pick one up.
+                    You&apos;ll notice the difference the moment you pick one up.
                   </p>
                 </div>
 
