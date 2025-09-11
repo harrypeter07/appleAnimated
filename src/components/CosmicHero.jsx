@@ -27,7 +27,7 @@ const CosmicParticles = () => {
 
 	const particleCount = 22500; // Reduced by 10% from 25000
 	const starCount = 5400; // Reduced by 10% from 6000
-	const transitionSpeed = 0.015;
+	const transitionSpeed = 0.02; // Slightly faster transitions
 	const patternNames = [
 		"Cosmic Sphere",
 		"Spiral Nebula",
@@ -127,14 +127,10 @@ const CosmicParticles = () => {
 	const colorPalettes = [
 		[
 			new THREE.Color(0x0077ff),
-			new THREE.Color(0x00aaff),
 			new THREE.Color(0x44ccff),
-			new THREE.Color(0x0055cc),
 		],
 		[
 			new THREE.Color(0x8800cc),
-			new THREE.Color(0xcc00ff),
-			new THREE.Color(0x660099),
 			new THREE.Color(0xaa33ff),
 		],
 		[
