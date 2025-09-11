@@ -25,8 +25,8 @@ const CosmicParticles = () => {
 	const lastWorldMouseRef = useRef(new THREE.Vector3());
 	const patternNameRef = useRef(null);
 
-	const particleCount = 25000;
-	const starCount = 6000;
+	const particleCount = 22500; // Reduced by 10% from 25000
+	const starCount = 5400; // Reduced by 10% from 6000
 	const transitionSpeed = 0.015;
 	const patternNames = [
 		"Cosmic Sphere",
