@@ -516,11 +516,11 @@ const CosmicParticles = () => {
 				newCol[i * 3 + 2] = final.b;
 			}
 
-			(particles as any).userData.fromPositions = curPos;
-			(particles as any).userData.toPositions = newPos;
-			(particles as any).userData.fromColors = curCol;
-			(particles as any).userData.toColors = newCol;
-			(particles as any).userData.targetPattern = newPattern;
+			particles.userData.fromPositions = curPos;
+			particles.userData.toPositions = newPos;
+			particles.userData.fromColors = curCol;
+			particles.userData.toColors = newCol;
+			particles.userData.targetPattern = newPattern;
 
 			transitionProgressRef.current = 0;
 		},
