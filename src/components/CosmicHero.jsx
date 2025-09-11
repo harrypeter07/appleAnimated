@@ -135,21 +135,15 @@ const CosmicParticles = () => {
 		],
 		[
 			new THREE.Color(0x00cc66),
-			new THREE.Color(0x33ff99),
 			new THREE.Color(0x99ff66),
-			new THREE.Color(0x008844),
 		],
 		[
 			new THREE.Color(0xff9900),
 			new THREE.Color(0xffcc33),
-			new THREE.Color(0xff6600),
-			new THREE.Color(0xffaa55),
 		],
 		[
 			new THREE.Color(0xff3399),
-			new THREE.Color(0xff66aa),
 			new THREE.Color(0xff0066),
-			new THREE.Color(0xcc0055),
 		],
 	];
 
@@ -607,14 +601,14 @@ const CosmicParticles = () => {
 		const deltaTime = clockRef.current.getDelta();
 		timeRef.current += deltaTime;
 
-		// Update mouse position
-		const raycaster = new THREE.Raycaster();
-		raycaster.setFromCamera(screenMouseRef.current, camera);
-		const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-		const intersectPoint = new THREE.Vector3();
+		// Update mouse position (optimized - only when mouse is active)
+		if (screenMouseRef.current.x < 9000) {
+			const raycaster = new THREE.Raycaster();
+			raycaster.setFromCamera(screenMouseRef.current, camera);
+			const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+			const intersectPoint = new THREE.Vector3();
 
-		if (raycaster.ray.intersectPlane(plane, intersectPoint)) {
-			if (screenMouseRef.current.x < 9000) {
+			if (raycaster.ray.intersectPlane(plane, intersectPoint)) {
 				lastWorldMouseRef.current.copy(worldMouseRef.current);
 				worldMouseRef.current.lerp(intersectPoint, 0.1);
 			}
@@ -750,9 +744,9 @@ const CosmicParticles = () => {
 
 		const bloomPass = new UnrealBloomPass(
 			new THREE.Vector2(window.innerWidth, window.innerHeight),
-			1.8,
-			0.6,
-			0.8
+			1.2, // Reduced strength for better performance
+			0.4, // Reduced radius
+			0.6  // Reduced threshold
 		);
 		composer.addPass(bloomPass);
 
