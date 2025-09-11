@@ -145,7 +145,7 @@ const handleProcess = (type , i)=> {
                           playsInline={true}
                           preload='auto'
                           muted
-                          className={`${
+                          className={`w-full h-full object-cover ${
                             list.id ===2 && 'translate-x-44'}  pointer-events-none
                           `}
                           ref={(el)=> (videoRef.current[i] = el)}
