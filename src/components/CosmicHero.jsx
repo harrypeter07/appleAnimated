@@ -634,12 +634,12 @@ const CosmicParticles = () => {
 
 		if (
 			particles &&
-			(particles.material as THREE.ShaderMaterial).uniforms.time &&
-			(particles.material as THREE.ShaderMaterial).uniforms.mousePos
+			particles.material.uniforms.time &&
+			particles.material.uniforms.mousePos
 		) {
-			(particles.material as THREE.ShaderMaterial).uniforms.time.value =
+			particles.material.uniforms.time.value =
 				timeRef.current;
-			(particles.material as THREE.ShaderMaterial).uniforms.mousePos.value.copy(
+			particles.material.uniforms.mousePos.value.copy(
 				worldMouseRef.current
 			);
 		}
