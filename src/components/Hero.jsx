@@ -1,25 +1,7 @@
 import gsap from 'gsap';
-import { useState } from 'react';
 import { useGSAP} from '@gsap/react'
-import { smallHeroVideo, futuristicVideo} from '../utils';
-import { useEffect } from 'react';
+import CosmicHero from './CosmicHero';
 const Hero = () => {
-    const [videoSrc , setVideoSrc] = useState(window.innerWidth < 760 ? smallHeroVideo : futuristicVideo)
-  //we have made this function and useEFFECT because it will make sure the changes whenever the window is resized from small to large or vice verssa
-     const handleVideoSrcSet =() => {
-       if(window.innerWidth < 760){
-        setVideoSrc(smallHeroVideo)
-       } else {
-        setVideoSrc(futuristicVideo)
-       }
-     }
-
-     useEffect(()=>{
-      window.addEventListener('resize' , handleVideoSrcSet);
-      return ()=>  {
-        window.removeEventListener('resize' , handleVideoSrcSet);
-      }
-     }, [])
 
 
 
@@ -40,31 +22,28 @@ const Hero = () => {
     }, [])
   return (
   <section className="w-full nav-height bg-black relative overflow-hidden">
-    {/* Full background video */}
-    <video 
-      className='absolute inset-0 w-full h-full object-cover pointer-events-none z-0' 
-      autoPlay 
-      muted 
-      playsInline={true} 
-      loop
-      key={videoSrc}
-    >
-        <source src={videoSrc} type='video/mp4' />
-    </video>
+    {/* Cosmic Hero Component - Centered and Touch Interactive */}
+    <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0">
+      <div className="w-full h-full">
+        <CosmicHero />
+      </div>
+    </div>
     
     {/* Content overlay */}
-    <div className="relative z-10 h-full w-full flex-center flex-col">
-      <div className="h-5/6 w-full flex-center flex-col">
-        <p id="hero" className="hero-title">Hi, I&apos;m Hassan</p>
+    <div className="relative z-10 h-full w-full flex justify-between items-center px-8">
+      {/* Left side - Hero title */}
+      <div className="flex flex-col">
+        <p id="hero" className="hero-title text-left">Hi, I&apos;m Hassan</p>
       </div>
 
+      {/* Right side - CTA */}
       <div id="cta" className="
       flex 
       flex-col
-      items-center 
+      items-end 
       opacity-0 translate-y-20">
           <a href="#highlights" className='btn'>View Work</a>
-          <p className='font-normal text-xl'>Front‑end Engineer • 3D & Motion • React</p>
+          <p className='font-normal text-xl text-right'>Front‑end Engineer • 3D & Motion • React</p>
       </div>
     </div>
   </section>
