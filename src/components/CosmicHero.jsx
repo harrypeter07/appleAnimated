@@ -450,7 +450,7 @@ const CosmicParticles = () => {
 				delete particles.userData.fromPositions;
 				delete particles.userData.toPositions;
 				delete particles.userData.fromColors;
-				delete (particles).userData.toColors;
+				delete particles.userData.toColors;
 			}
 			return;
 		}
@@ -479,7 +479,7 @@ const CosmicParticles = () => {
 	}, []);
 
 	const transitionToPattern = useCallback(
-		(newPattern: number) => {
+		(newPattern) => {
 			const particles = particlesRef.current;
 			if (!particles) return;
 
