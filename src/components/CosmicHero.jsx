@@ -23,18 +23,10 @@ const CosmicParticles = () => {
 	const screenMouseRef = useRef(new THREE.Vector2(10000, 10000));
 	const worldMouseRef = useRef(new THREE.Vector3());
 	const lastWorldMouseRef = useRef(new THREE.Vector3());
-	const patternNameRef = useRef(null);
 
 	const particleCount = 22500; // Reduced by 10% from 25000
 	const starCount = 5400; // Reduced by 10% from 6000
 	const transitionSpeed = 0.02; // Slightly faster transitions
-	const patternNames = [
-		"Cosmic Sphere",
-		"Spiral Nebula",
-		"Quantum Helix",
-		"Stardust Grid",
-		"Celestial Torus",
-	];
 
 	// Pattern creation functions
 	const createSphere = useCallback((i, count) => {
@@ -407,22 +399,6 @@ const CosmicParticles = () => {
 		return new THREE.Points(geometry, material);
 	}, [particleCount, patterns, colorPalettes]);
 
-	const updatePatternName = useCallback((name, instant = false) => {
-		const el = patternNameRef.current;
-		if (!el) return;
-
-		el.textContent = name;
-		if (instant) {
-			el.style.transition = "none";
-			el.style.opacity = "1";
-		} else {
-			el.style.transition = "opacity 0.5s ease";
-			el.style.opacity = "1";
-			setTimeout(() => {
-				if (el) el.style.opacity = "0";
-			}, 2500);
-		}
-	}, []);
 
 	const completeCurrentTransition = useCallback(() => {
 		const particles = particlesRef.current;
@@ -522,13 +498,10 @@ const CosmicParticles = () => {
 
 		const nextPattern = (currentPatternRef.current + 1) % patterns.length;
 		transitionToPattern(nextPattern);
-		updatePatternName(patternNames[nextPattern]);
 	}, [
 		patterns.length,
-		patternNames,
 		completeCurrentTransition,
 		transitionToPattern,
-		updatePatternName,
 	]);
 
 	const updateScreenMouse = useCallback((clientX, clientY) => {
@@ -770,8 +743,6 @@ const CosmicParticles = () => {
 		});
 		document.addEventListener("touchmove", handleTouchMove, { passive: false });
 
-		// Initialize pattern name
-		updatePatternName(patternNames[currentPatternRef.current], true);
 
 		// Start animation
 		animate();
@@ -803,8 +774,6 @@ const CosmicParticles = () => {
 		handleMouseClick,
 		handleTouchStart,
 		handleTouchMove,
-		updatePatternName,
-		patternNames,
 		animate,
 	]);
 
@@ -844,50 +813,7 @@ const CosmicParticles = () => {
 				}}
 			/>
 
-			<div
-				ref={patternNameRef}
-				style={{
-					position: "fixed",
-					top: "20px",
-					left: "50%",
-					transform: "translateX(-50%)",
-					color: "white",
-					fontFamily: "sans-serif",
-					fontSize: "16px",
-					pointerEvents: "none",
-					zIndex: 100,
-					opacity: 0,
-					transition: "opacity 0.5s ease",
-					textAlign: "center",
-					backgroundColor: "rgba(0,0,0,0.4)",
-					padding: "8px 18px",
-					borderRadius: "25px",
-					textShadow: "0 0 5px rgba(0, 0, 0, 0.5)",
-				}}
-			>
-				Cosmic Sphere
-			</div>
 
-			<div
-				style={{
-					position: "fixed",
-					bottom: "15px",
-					left: "15px",
-					color: "rgba(255, 255, 255, 0.7)",
-					fontFamily: "sans-serif",
-					fontSize: "12px",
-					backgroundColor: "rgba(0, 0, 0, 0.3)",
-					padding: "5px 10px",
-					borderRadius: "3px",
-					zIndex: 100,
-					pointerEvents: "none",
-					lineHeight: 1.4,
-				}}
-			>
-				Hover to interact
-				<br />
-				Click/Tap to change pattern
-			</div>
 		</div>
 	);
 };
