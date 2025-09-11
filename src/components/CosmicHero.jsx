@@ -447,8 +447,8 @@ const CosmicParticles = () => {
 			isTransitioningRef.current = false;
 			transitionProgressRef.current = 0;
 			if (particles) {
-				delete (particles ).userData.fromPositions;
-				delete (particles ).userData.toPositions;
+				delete particles.userData.fromPositions;
+				delete particles.userData.toPositions;
 				delete (particles ).userData.fromColors;
 				delete (particles).userData.toColors;
 			}
