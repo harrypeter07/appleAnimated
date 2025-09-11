@@ -34,19 +34,11 @@ const Hero = () => {
     {/* Content overlay */}
     <div className="relative z-10 h-full w-full flex justify-between items-center px-8">
       {/* Left side - Hero title */}
-      <div className="flex flex-col space-y-2">
-        <p id="hero" className="text-6xl md:text-8xl font-bold text-white text-left leading-tight" 
-           style={{
-             textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4)',
-             filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))'
-           }}>
+      <div className="flex flex-col space-y-1">
+        <p id="hero" className="hero-glow-text text-7xl md:text-9xl text-left leading-none opacity-0">
           Hi
         </p>
-        <p id="hero-name" className="text-5xl md:text-7xl font-bold text-white text-left leading-tight"
-           style={{
-             textShadow: '0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.4)',
-             filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))'
-           }}>
+        <p id="hero-name" className="hero-glow-text text-6xl md:text-8xl text-left leading-none opacity-0">
           Hassan
         </p>
       </div>
