@@ -543,7 +543,7 @@ const CosmicParticles = () => {
 		updatePatternName,
 	]);
 
-	const updateScreenMouse = useCallback((clientX: number, clientY: number) => {
+	const updateScreenMouse = useCallback((clientX, clientY) => {
 		screenMouseRef.current.x = (clientX / window.innerWidth) * 2 - 1;
 		screenMouseRef.current.y = -(clientY / window.innerHeight) * 2 + 1;
 	}, []);
@@ -692,7 +692,7 @@ const CosmicParticles = () => {
 
 					particles.geometry.attributes.position.needsUpdate = true;
 					particles.geometry.attributes.color.needsUpdate = true;
-					(particles.geometry as any).userData.currentColors = new Float32Array(
+					particles.geometry.userData.currentColors = new Float32Array(
 						colors
 					);
 				} else {
