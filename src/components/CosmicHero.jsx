@@ -284,7 +284,7 @@ const CosmicParticles = () => {
 			"particleType",
 			new THREE.BufferAttribute(particleTypes, 1)
 		);
-		(geometry as any).userData.currentColors = new Float32Array(colors);
+		geometry.userData.currentColors = new Float32Array(colors);
 
 		const material = new THREE.ShaderMaterial({
 			uniforms: {
@@ -419,7 +419,7 @@ const CosmicParticles = () => {
 		return new THREE.Points(geometry, material);
 	}, [particleCount, patterns, colorPalettes]);
 
-	const updatePatternName = useCallback((name: string, instant = false) => {
+	const updatePatternName = useCallback((name, instant = false) => {
 		const el = patternNameRef.current;
 		if (!el) return;
 
@@ -441,16 +441,16 @@ const CosmicParticles = () => {
 		if (
 			!isTransitioningRef.current ||
 			!particles ||
-			!(particles as any).userData.toPositions ||
-			!(particles as any).userData.toColors
+			!particles.userData.toPositions ||
+			!particles.userData.toColors
 		) {
 			isTransitioningRef.current = false;
 			transitionProgressRef.current = 0;
 			if (particles) {
-				delete (particles as any).userData.fromPositions;
-				delete (particles as any).userData.toPositions;
-				delete (particles as any).userData.fromColors;
-				delete (particles as any).userData.toColors;
+				delete (particles ).userData.fromPositions;
+				delete (particles ).userData.toPositions;
+				delete (particles ).userData.fromColors;
+				delete (particles).userData.toColors;
 			}
 			return;
 		}
