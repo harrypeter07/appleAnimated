@@ -57,7 +57,6 @@ const Hero = () => {
       <div className="h-5/6 w-full flex-center flex-col">
         <p id="hero" className="hero-title">Hi, I&apos;m Hassan</p>
       </div>
-    </div>
 
       <div id="cta" className="
       flex 
