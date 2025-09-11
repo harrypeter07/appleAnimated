@@ -627,8 +627,8 @@ const CosmicParticles = () => {
 		}
 
 		// Update uniforms
-		if (stars && (stars.material as THREE.ShaderMaterial).uniforms.time) {
-			(stars.material as THREE.ShaderMaterial).uniforms.time.value =
+		if (stars && stars.material.uniforms.time) {
+			stars.material.uniforms.time.value =
 				timeRef.current;
 		}
 
