@@ -659,14 +659,12 @@ const CosmicParticles = () => {
 				transitionProgressRef.current = 1.0;
 				completeCurrentTransition();
 			} else {
-				const positions = particles.geometry.attributes.position
-					.array as Float32Array;
-				const colors = particles.geometry.attributes.color
-					.array as Float32Array;
-				const fromPos = (particles as any).userData.fromPositions;
-				const toPos = (particles as any).userData.toPositions;
-				const fromCol = (particles as any).userData.fromColors;
-				const toCol = (particles as any).userData.toColors;
+				const positions = particles.geometry.attributes.position.array;
+				const colors = particles.geometry.attributes.color.array;
+				const fromPos = particles.userData.fromPositions;
+				const toPos = particles.userData.toPositions;
+				const fromCol = particles.userData.fromColors;
+				const toCol = particles.userData.toColors;
 
 				const t = transitionProgressRef.current;
 				const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
