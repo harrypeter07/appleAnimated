@@ -449,7 +449,7 @@ const CosmicParticles = () => {
 			if (particles) {
 				delete particles.userData.fromPositions;
 				delete particles.userData.toPositions;
-				delete (particles ).userData.fromColors;
+				delete particles.userData.fromColors;
 				delete (particles).userData.toColors;
 			}
 			return;
