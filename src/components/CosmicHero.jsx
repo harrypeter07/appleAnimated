@@ -648,10 +648,10 @@ const CosmicParticles = () => {
 		if (
 			isTransitioningRef.current &&
 			particles &&
-			(particles as any).userData.fromPositions &&
-			(particles as any).userData.toPositions &&
-			(particles as any).userData.fromColors &&
-			(particles as any).userData.toColors
+			particles.userData.fromPositions &&
+			particles.userData.toPositions &&
+			particles.userData.fromColors &&
+			particles.userData.toColors
 		) {
 			transitionProgressRef.current += transitionSpeed;
 
