@@ -50,12 +50,12 @@ const HowItWorks = () => {
 
         <div className="flex flex-col items-center">
           <h2 className="hiw-title">
-            A17 Pro chip.
-            <br /> A monster win for gaming.
+            Craft and process.
+            <br /> From idea to interaction.
           </h2>
 
           <p className="hiw-subtitle">
-            It&apos;s here. The biggest redesign in the history of Apple GPUs.
+            It&apos;s here. A peek into how I design, iterate, and ship.
           </p>
         </div>
 
@@ -80,26 +80,26 @@ const HowItWorks = () => {
           <div className="hiw-text-container">
                 <div className="flex flex-1 justify-center flex-col">
                   <p className="hiw-text g_fadeIn">
-                    A17 Pro is an entirely new class of iPhone chip that delivers our {' '}
+                    I start with structure and motion principles to deliver {' '}
                     <span className="text-white">
-                      best graphic performance by far
+                      clear, engaging interactions
                     </span>.
                   </p>
 
                   <p className="hiw-text g_fadeIn">
-                   Mobile {' '}
+                   Then I refine details—timing, easing, depth—so every flow {' '}
                     <span className="text-white">
-                      games will look and feel so immersive
+                      feels smooth and intentional
                     </span>
-                    , with incredibly detailed environments and characters.
+                    , across screens and devices.
                   </p>
                 </div>
               
 
               <div className="flex-1 flex justify-center flex-col g_fadeIn">
-                <p className="hiw-text">New</p>
-                <p className="hiw-bigtext">Pro-class GPU</p>
-                <p className="hiw-text">with 6 cores</p>
+                <p className="hiw-text">Toolkit</p>
+                <p className="hiw-bigtext">React • GSAP • Three.js</p>
+                <p className="hiw-text">Tailwind • Vite</p>
               </div>
               </div>
             </div>

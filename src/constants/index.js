@@ -9,38 +9,38 @@ import {
     yellowImg,
   } from "../utils";
   
-  export const navLists = ["Store", "Mac", "iPhone", "Support"];
+  export const navLists = ["About", "Work", "Skills", "Contact"];
   
   export const hightlightsSlides = [
     {
       id: 1,
       textLists: [
-        "Enter A17 Pro.",
-        "Game‑changing chip.",
-        "Groundbreaking performance.",
+        "Crafting delightful UIs.",
+        "Smooth interactions.",
+        "High‑performance experiences.",
       ],
       video: highlightFirstVideo,
       videoDuration: 4,
     },
     {
       id: 2,
-      textLists: ["Titanium.", "So strong. So light. So Pro."],
+      textLists: ["Design systems.", "Accessible. Responsive. Consistent."],
       video: highlightSecondVideo,
       videoDuration: 5,
     },
     {
       id: 3,
       textLists: [
-        "iPhone 15 Pro Max has the",
-        "longest optical zoom in",
-        "iPhone ever. Far out.",
+        "3D & motion.",
+        "Immersive visuals with Three.js",
+        "and WebGL.",
       ],
       video: highlightThirdVideo,
       videoDuration: 2,
     },
     {
       id: 4,
-      textLists: ["All-new Action button.", "What will yours do?."],
+      textLists: ["Real‑world impact.", "Products that people love."],
       video: highlightFourthVideo,
       videoDuration: 3.63,
     },
@@ -49,25 +49,25 @@ import {
   export const models = [
     {
       id: 1,
-      title: "iPhone 15 Pro in Natural Titanium",
+      title: "Featured project: Natural Palette",
       color: ["#8F8A81", "#ffe7b9", "#6f6c64"],
       img: yellowImg,
     },
     {
       id: 2,
-      title: "iPhone 15 Pro in Blue Titanium",
+      title: "Featured project: Deep Blue Dashboard",
       color: ["#53596E", "#6395ff", "#21242e"],
       img: blueImg,
     },
     {
       id: 3,
-      title: "iPhone 15 Pro in White Titanium",
+      title: "Featured project: Minimal Commerce",
       color: ["#C9C8C2", "#ffffff", "#C9C8C2"],
       img: whiteImg,
     },
     {
       id: 4,
-      title: "iPhone 15 Pro in Black Titanium",
+      title: "Featured project: Noir Studio",
       color: ["#454749", "#3b3b3b", "#181819"],
       img: blackImg,
     },
@@ -79,9 +79,9 @@ import {
   ];
   
   export const footerLinks = [
-    "Privacy Policy",
-    "Terms of Use",
-    "Sales Policy",
-    "Legal",
-    "Site Map",
+    "GitHub",
+    "LinkedIn",
+    "Resume",
+    "Email",
+    "Dribbble",
   ];

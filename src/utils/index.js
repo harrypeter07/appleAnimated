@@ -3,7 +3,10 @@ import hero from "/assets/images/hero.jpeg";
 export const heroImg = hero;
 
 import hmv from "/assets/videos/hero.mp4";
+import heroVideomv from "/assets/videos/hero-video.mp4";
 import smallmv from "/assets/videos/smallHero.mp4";
+import loadingVideomv from "/assets/videos/13232-246463976_medium.mp4";
+import futuristicVideomv from "/assets/videos/Futuristic_Hero_Section_Video_Generation.mp4";
 import highlightFirstmv from "/assets/videos/highlight-first.mp4";
 import highlightSectmv from "/assets/videos/hightlight-third.mp4";
 import highlightThirdmv from "/assets/videos/hightlight-sec.mp4";
@@ -30,7 +33,10 @@ import chip from "/assets/images/chip.jpeg";
 import frame from "/assets/images/frame.png";
 
 export const heroVideo = hmv;
+export const heroVideoNew = heroVideomv;
 export const smallHeroVideo = smallmv;
+export const loadingVideo = loadingVideomv;
+export const futuristicVideo = futuristicVideomv;
 export const highlightFirstVideo = highlightFirstmv;
 export const highlightSecondVideo = highlightSectmv;
 export const highlightThirdVideo = highlightThirdmv;

@@ -44,16 +44,16 @@ const Features = () => {
             <div className="screen-max-width">
                   <div className="mt-12 w-full">
                        <h1  id='features_title' className='section-heading'> 
-                            Explore the full story
+                            Explore the craft
                          </h1>
                   </div>
 
 
                   <div className="flex flex-col justify-center items-center overflow-hidden">
                     <div className='mt-22 mb-24 pl-24'>
-                            <h2 className='text-5xl lg:text-7xl font-semibold'>iPhone</h2>
+                            <h2 className='text-5xl lg:text-7xl font-semibold'>Selected</h2>
 
-                            <h2 className='text-5xl lg:text-7xl font-semibold'>Forged in titanium.</h2>
+                            <h2 className='text-5xl lg:text-7xl font-semibold'>projects & experiments.</h2>
                             </div>
 
                             <div className="flex-center flex-col sm:px-10">
@@ -88,21 +88,21 @@ const Features = () => {
                       <div className="feature-text-container">
                 <div className="flex-1 flex-center">
                   <p className="feature-text g_text">
-                    iPhone 15 Pro is {' '}
+                    My process is {' '}
                     <span className="text-white">
-                      the first iPhone to feature an aerospace-grade titanium design
+                      collaborative, detail‑oriented, and performance‑minded
                     </span>
-                    , using the same alloy that spacecrafts use for missions to Mars.
+                    , from concept to polished delivery.
                   </p>
                 </div>
 
                 <div className="flex-1 flex-center">
                   <p className="feature-text g_text">
-                    Titanium has one of the best strength-to-weight ratios of any metal, making these our {' '}
+                    I focus on accessible, responsive interfaces, crafting {' '}
                     <span className="text-white">
-                      lightest Pro models ever.
+                      delightful user experiences
                     </span>
-                    You&apos;ll notice the difference the moment you pick one up.
+                    that feel fast and alive.
                   </p>
                 </div>
 
